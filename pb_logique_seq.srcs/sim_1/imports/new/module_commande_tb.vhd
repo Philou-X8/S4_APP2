@@ -62,11 +62,11 @@ end component;
    signal   d_clk_p       :  std_logic := '0';   -- (sol) horloge principale 50 MHz (utile pour cette simulation a éviter si possible)
    signal   d_reset       :  std_logic := '0'; 
    signal   d_sw          :  std_logic_vector (3 downto 0);  -- 4 bits sur Zybo
-   signal   d_btn         :  std_logic_vector (3 downto 0);
+   signal   d_btn         :  std_logic_vector (3 downto 0) := "0000";
    
-   signal   d_btn_db      :  std_logic_vector (3 downto 0);
-   signal   d_sel_par     :  std_logic_vector (1 downto 0); 
-   signal   d_sel_fct     :  std_logic_vector (1 downto 0);
+   signal   d_btn_db      :  std_logic_vector (3 downto 0) := "0000";
+   signal   d_sel_par     :  std_logic_vector (1 downto 0) := "00"; 
+   signal   d_sel_fct     :  std_logic_vector (1 downto 0) := "00";
    
    -- signal test pour vérification
    signal expected_status_code    : std_logic_vector (1 downto 0);

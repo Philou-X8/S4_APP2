@@ -7,6 +7,8 @@
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+USE ieee.numeric_std.all;
 
 entity module_commande IS
 generic (nbtn : integer := 4;  mode_simulation: std_logic := '0');
@@ -39,6 +41,10 @@ end component;
     signal d_strobe_btn :    std_logic_vector (nbtn-1 downto 0);
     signal d_btn_cd     :    std_logic_vector (nbtn-1 downto 0); 
     signal d_reset      :    std_logic;
+    
+    ----------------------------
+    signal state_current : unsigned(1 downto 0); 
+    signal state_next : unsigned(1 downto 0); 
    
 BEGIN 
 
@@ -54,15 +60,35 @@ BEGIN
  
  process(clk)
  begin
-    if(rising_edge(clk)) then
+    if d_reset = '1' then
+        state_next <= "00";
+        state_current <= "00";
+    elsif(rising_edge(clk)) then
+        
         o_reset <= d_reset;
+        
+        
+        if d_strobe_btn = "11" then
+            state_next <= state_current;
+        elsif d_strobe_btn(1) = '1' then
+            state_next <= state_current + 3;
+        elsif d_strobe_btn(0) = '1' then
+            state_next <= state_current + 1;
+        end if;
+        
+        state_current <= state_next;
+        
+        
     end if;
  end process;
- 
+    
+    o_selection_fct <= std_logic_vector(state_current);
+    --o_selection_fct(0) <= i_btn(0);
+    --o_selection_fct(1) <= i_btn(1);
  
    o_btn_cd        <= d_btn_cd;
    o_selection_par <= i_sw(1 downto 0); -- mode de selection du parametre par sw
-   o_selection_fct <= i_sw(3 downto 2); -- mode de selection de la fonction par sw
-   d_reset         <= i_btn(3);         -- pas de contionnement particulier sur reset
+   --o_selection_fct <= i_sw(3 downto 2); -- mode de selection de la fonction par sw
+   d_reset         <= i_btn(3);         -- pas de fontionnement particulier sur reset
 
 END BEHAVIOR;
