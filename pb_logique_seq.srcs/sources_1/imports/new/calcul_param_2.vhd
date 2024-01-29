@@ -50,13 +50,28 @@ architecture Behavioral of calcul_param_2 is
 ---------------------------------------------------------------------------------
 --  Signaux
 ----------------------------------------------------------------------------------
+    signal d_ech_last : signed(23 downto 0) := (others => '0') ;
     
     
 ---------------------------------------------------------------------------------------------
 --  Description comportementale
 ---------------------------------------------------------------------------------------------
 begin 
-
-     o_param <= x"02";    -- temporaire ...
+    
+    update_state: process(i_bclk, i_reset)
+    begin
+        if (i_reset = '1') then
+            d_ech_last <= (others => '0');
+        else
+            if rising_edge(i_bclk) and (i_en = '1') then
+                -- d_ech_last <= signed(i_ech) + d_ech_last * "01111";
+                d_ech_last <= signed(i_ech);
+            end if;
+        end if;
+    end process;
+    
+    
+    o_param <= std_logic_vector( d_ech_last(23 downto 16) );
+    -- o_param <= x"02";    -- temporaire ...
 
 end Behavioral;

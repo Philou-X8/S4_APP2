@@ -88,56 +88,56 @@ begin
     begin
         case fsm_state_current is 
             when sta_wait_pos =>
-                if(i_cpt_bits(23) = '1') then 
+                if(i_ech(23) = '1') then 
                     fsm_state_next <= sta_wait_pos; -- keep waiting
                 else
                     fsm_state_next <= sta_pos_1; -- change state
                 end if;
                 
             when sta_pos_1 =>
-                if(i_cpt_bits(23) = '1') then 
+                if(i_ech(23) = '1') then 
                     fsm_state_next <= sta_wait_pos; -- keep waiting
                 else
                     fsm_state_next <= sta_pos_2; -- change state
                 end if;
                 
             when sta_pos_2 =>
-                if(i_cpt_bits(23) = '1') then 
+                if(i_ech(23) = '1') then 
                     fsm_state_next <= sta_wait_pos; -- keep waiting
                 else
                     fsm_state_next <= sta_pos_3; -- change state
                 end if;
                 
             when sta_pos_3 =>
-                if(i_cpt_bits(23) = '1') then 
+                if(i_ech(23) = '1') then 
                     fsm_state_next <= sta_wait_pos; -- keep waiting
                 else
                     fsm_state_next <= sta_wait_neg; -- change state
                 end if;
                 
             when sta_wait_neg =>
-                if(i_cpt_bits(23) = '0') then 
+                if(i_ech(23) = '0') then 
                     fsm_state_next <= sta_wait_neg; -- keep waiting
                 else
                     fsm_state_next <= sta_neg_1; -- change state
                 end if;
                 
             when sta_neg_1 =>
-                if(i_cpt_bits(23) = '0') then 
+                if(i_ech(23) = '0') then 
                     fsm_state_next <= sta_wait_neg; -- keep waiting
                 else
                     fsm_state_next <= sta_neg_2; -- change state
                 end if;
                 
             when sta_neg_2 =>
-                if(i_cpt_bits(23) = '0') then 
+                if(i_ech(23) = '0') then 
                     fsm_state_next <= sta_wait_neg; -- keep waiting
                 else
                     fsm_state_next <= sta_neg_3; -- change state
                 end if;
                 
             when sta_neg_3 =>
-                if(i_cpt_bits(23) = '0') then 
+                if(i_ech(23) = '0') then 
                     fsm_state_next <= sta_wait_neg; -- keep waiting
                 else
                     fsm_state_next <= sta_wait_pos; -- change state
@@ -155,41 +155,41 @@ begin
             when sta_wait_pos =>
                 o_param         <= '0' & i_cpt_bits;
                 o_cpt_bit_reset <= '1';
-                o_cpt_en        <= '0';
+                o_reg_en        <= '0';
             when sta_pos_1 =>
                 o_param         <= '0' & i_cpt_bits;
                 o_cpt_bit_reset <= '0';
-                o_cpt_en        <= i_en;
+                o_reg_en        <= i_en;
             when sta_pos_2 =>
                 o_param         <= '0' & i_cpt_bits;
                 o_cpt_bit_reset <= '0';
-                o_cpt_en        <= i_en;
+                o_reg_en        <= i_en;
             when sta_pos_3 =>
                 o_param         <= '0' & i_cpt_bits;
                 o_cpt_bit_reset <= '0';
-                o_cpt_en        <= i_en;
+                o_reg_en        <= i_en;
                 
             when sta_wait_neg =>
                 o_param         <= '0' & i_cpt_bits;
                 o_cpt_bit_reset <= '0';
-                o_cpt_en        <= i_en;
+                o_reg_en        <= i_en;
             when sta_neg_1 =>
                 o_param         <= '0' & i_cpt_bits;
                 o_cpt_bit_reset <= '0';
-                o_cpt_en        <= i_en;
+                o_reg_en        <= i_en;
             when sta_neg_2 =>
                 o_param         <= '0' & i_cpt_bits;
                 o_cpt_bit_reset <= '0';
-                o_cpt_en        <= i_en;
+                o_reg_en        <= i_en;
             when sta_neg_3 =>
                 o_param         <= '0' & i_cpt_bits;
                 o_cpt_bit_reset <= '0';
-                o_cpt_en        <= i_en;
+                o_reg_en        <= i_en;
                 
             when others =>
                 o_param <= "00000000";
                 o_cpt_bit_reset    <= '1';
-                o_cpt_en     <= '0';
+                o_reg_en     <= '0';
         end case;
     end process;
 
