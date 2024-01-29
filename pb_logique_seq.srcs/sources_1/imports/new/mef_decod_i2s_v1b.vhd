@@ -94,7 +94,7 @@ begin
                 end if;
             
             when sta_pulse_l =>
-                fsm_state_next <= sta_wait_l; -- change state
+                fsm_state_next <= sta_wait_r; -- change state
                 
             when sta_wait_r =>
                 if(i_lrc = '0') then

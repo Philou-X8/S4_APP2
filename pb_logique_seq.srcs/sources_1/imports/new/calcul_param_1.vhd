@@ -39,7 +39,11 @@ entity calcul_param_1 is
     i_reset   : in   std_logic;
     i_en      : in   std_logic; -- un echantillon present a l'entrée
     i_ech     : in   std_logic_vector (23 downto 0); -- echantillon en entrée
-    o_param   : out  std_logic_vector (7 downto 0)   -- paramètre calculé
+    o_param   : out  std_logic_vector (7 downto 0);   -- paramètre calculé
+    
+    i_cpt_bits  : in std_logic_vector(6 downto 0); -- value of counter
+    o_cpt_bit_reset  : out std_logic;   -- resset couonter
+    o_reg_en  : out std_logic   -- enable counting
     );
 end calcul_param_1;
 
@@ -48,15 +52,148 @@ end calcul_param_1;
 architecture Behavioral of calcul_param_1 is
 
 ---------------------------------------------------------------------------------
--- Signaux
+--  Signaux
 ----------------------------------------------------------------------------------
+    type fsm_decode_state is (
+        sta_wait_pos,
+        sta_pos_1,
+        sta_pos_2,
+        sta_pos_3,
+        sta_wait_neg,
+        sta_neg_1,
+        sta_neg_2,
+        sta_neg_3
+        
+    );
     
-
+    signal fsm_state_current, fsm_state_next : fsm_decode_state;
+    
 ---------------------------------------------------------------------------------------------
---    Description comportementale
+--  Description comportementale
 ---------------------------------------------------------------------------------------------
 begin 
 
-     o_param <= x"01";    -- temporaire ...
+    update_state: process(i_bclk, i_reset)
+    begin
+        if (i_reset = '1') then
+             fsm_state_current <= sta_wait_pos;
+        else
+            if rising_edge(i_bclk) then
+                fsm_state_current <= fsm_state_next;
+            end if;
+        end if;
+    end process;
+    
+    transion_state: process(fsm_state_current, i_cpt_bits)
+    begin
+        case fsm_state_current is 
+            when sta_wait_pos =>
+                if(i_cpt_bits(23) = '1') then 
+                    fsm_state_next <= sta_wait_pos; -- keep waiting
+                else
+                    fsm_state_next <= sta_pos_1; -- change state
+                end if;
+                
+            when sta_pos_1 =>
+                if(i_cpt_bits(23) = '1') then 
+                    fsm_state_next <= sta_wait_pos; -- keep waiting
+                else
+                    fsm_state_next <= sta_pos_2; -- change state
+                end if;
+                
+            when sta_pos_2 =>
+                if(i_cpt_bits(23) = '1') then 
+                    fsm_state_next <= sta_wait_pos; -- keep waiting
+                else
+                    fsm_state_next <= sta_pos_3; -- change state
+                end if;
+                
+            when sta_pos_3 =>
+                if(i_cpt_bits(23) = '1') then 
+                    fsm_state_next <= sta_wait_pos; -- keep waiting
+                else
+                    fsm_state_next <= sta_wait_neg; -- change state
+                end if;
+                
+            when sta_wait_neg =>
+                if(i_cpt_bits(23) = '0') then 
+                    fsm_state_next <= sta_wait_neg; -- keep waiting
+                else
+                    fsm_state_next <= sta_neg_1; -- change state
+                end if;
+                
+            when sta_neg_1 =>
+                if(i_cpt_bits(23) = '0') then 
+                    fsm_state_next <= sta_wait_neg; -- keep waiting
+                else
+                    fsm_state_next <= sta_neg_2; -- change state
+                end if;
+                
+            when sta_neg_2 =>
+                if(i_cpt_bits(23) = '0') then 
+                    fsm_state_next <= sta_wait_neg; -- keep waiting
+                else
+                    fsm_state_next <= sta_neg_3; -- change state
+                end if;
+                
+            when sta_neg_3 =>
+                if(i_cpt_bits(23) = '0') then 
+                    fsm_state_next <= sta_wait_neg; -- keep waiting
+                else
+                    fsm_state_next <= sta_wait_pos; -- change state
+                end if;
+            
+            when others =>
+                fsm_state_next <= sta_wait_pos; -- reset to default state
+        end case;
+    end process;
+    
+    
+    apply_state: process(fsm_state_current)
+    begin
+        case fsm_state_current is 
+            when sta_wait_pos =>
+                o_param         <= '0' & i_cpt_bits;
+                o_cpt_bit_reset <= '1';
+                o_cpt_en        <= '0';
+            when sta_pos_1 =>
+                o_param         <= '0' & i_cpt_bits;
+                o_cpt_bit_reset <= '0';
+                o_cpt_en        <= i_en;
+            when sta_pos_2 =>
+                o_param         <= '0' & i_cpt_bits;
+                o_cpt_bit_reset <= '0';
+                o_cpt_en        <= i_en;
+            when sta_pos_3 =>
+                o_param         <= '0' & i_cpt_bits;
+                o_cpt_bit_reset <= '0';
+                o_cpt_en        <= i_en;
+                
+            when sta_wait_neg =>
+                o_param         <= '0' & i_cpt_bits;
+                o_cpt_bit_reset <= '0';
+                o_cpt_en        <= i_en;
+            when sta_neg_1 =>
+                o_param         <= '0' & i_cpt_bits;
+                o_cpt_bit_reset <= '0';
+                o_cpt_en        <= i_en;
+            when sta_neg_2 =>
+                o_param         <= '0' & i_cpt_bits;
+                o_cpt_bit_reset <= '0';
+                o_cpt_en        <= i_en;
+            when sta_neg_3 =>
+                o_param         <= '0' & i_cpt_bits;
+                o_cpt_bit_reset <= '0';
+                o_cpt_en        <= i_en;
+                
+            when others =>
+                o_param <= "00000000";
+                o_cpt_bit_reset    <= '1';
+                o_cpt_en     <= '0';
+        end case;
+    end process;
+
+
+     -- o_param <= x"01";    -- temporaire ...
  
 end Behavioral;
