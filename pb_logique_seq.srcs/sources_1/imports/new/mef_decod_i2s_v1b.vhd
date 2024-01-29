@@ -51,7 +51,7 @@ end mef_decod_i2s_v1b;
 
 architecture Behavioral of mef_decod_i2s_v1b is
 
-    signal   d_reclrc_prec  : std_logic ;  --
+    -- signal   d_reclrc_prec  : std_logic ;  --
     
     type fsm_decode_state is (
         sta_wait_l,
@@ -67,7 +67,7 @@ begin
 
     update_state: process(i_bclk, i_reset)
     begin
-       if (i_reset ='1') then
+       if (i_reset = '1') then
              fsm_state_current <= sta_wait_l;
        else
        if rising_edge(i_bclk) then
@@ -114,11 +114,11 @@ begin
                 fsm_state_next <= sta_wait_l; -- change state
             
             when others =>
-                fsm_state_next <= sta_wait_l;
+                fsm_state_next <= sta_wait_l; -- reset to default state
         end case;
     end process;
     
-    apply_state: process(fsm_state_current, i_lrc)
+    apply_state: process(fsm_state_current)
     begin
         case fsm_state_current is 
             when sta_wait_l =>
@@ -171,59 +171,6 @@ begin
                 o_str_dat       <= '0';
         end case;
     end process;
-    ------------------ OLD CODE: ----------------------------
 
-   -- pour detecter transitions d_ac_reclrc
-   reglrc_I2S: process ( i_bclk)
-   begin
-   if i_bclk'event and (i_bclk = '1') then
-        d_reclrc_prec <= i_lrc;
-   end if;
-   end process;
-   
-  -- synch compteur codeur
-   rest_cpt: process (i_lrc, d_reclrc_prec, i_reset)
-      begin
-         o_cpt_bit_reset <= (d_reclrc_prec xor i_lrc) or i_reset;
-      end process;
-      
 
-     -- decodage compteur avec case ...   
-        sig_ctrl_I2S:  process (i_cpt_bits, i_lrc )
-            begin
-                case i_cpt_bits is
-                 when "0000000" =>
-                     o_bit_enable     <= '1';
-                     o_load_left      <= '0';
-                     o_load_right     <= '0';
-                     o_str_dat        <= '0';
-                 when   "0000001"  |  "0000010"  |  "0000011"  |  "0000100"  
-                       |  "0000101"  |  "0000110"  |  "0000111"  |  "0001000" 
-                       |  "0001001"  |  "0001010"  |  "0001011"  |  "0001100" 
-                       |  "0001101"  |  "0001110"  |  "0001111"  |  "0010000"  
-                       |  "0010001"  |  "0010010"  |  "0010011"  |  "0010100" 
-                       |  "0010101"  |  "0010110"  |  "0010111"   
-                    =>
-                     o_bit_enable     <= '1';
-                     o_load_left      <= '0';
-                     o_load_right     <= '0';
-                     o_str_dat        <= '0';
-                 when   "0011000"  =>
-                     o_bit_enable     <= '0';
-                     o_load_left      <= not i_lrc;
-                     o_load_right     <=  i_lrc;
-                     o_str_dat        <= '0';
-                 when    "0011001"  =>
-                    o_bit_enable     <= '0';
-                    o_load_left     <= '0';
-                    o_load_right     <= '0';
-                    o_str_dat        <=  i_lrc;
-                 when  others  =>
-                    o_bit_enable     <= '0';
-                    o_load_left      <= '0';
-                    o_load_right     <= '0';
-                    o_str_dat        <= '0';
-                 end case;
-             end process;
-
-     end Behavioral;
+end Behavioral;
