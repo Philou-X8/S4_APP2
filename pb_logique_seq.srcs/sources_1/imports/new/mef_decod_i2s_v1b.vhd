@@ -53,7 +53,125 @@ architecture Behavioral of mef_decod_i2s_v1b is
 
     signal   d_reclrc_prec  : std_logic ;  --
     
+    type fsm_decode_state is (
+        sta_wait_l,
+        sta_load_l,
+        sta_pulse_l,
+        sta_wait_r,
+        sta_load_r,
+        sta_pulse_r
+    );
+    
+    signal fsm_state_current, fsm_state_next : fsm_decode_state;
 begin
+
+    update_state: process(i_bclk, i_reset)
+    begin
+       if (i_reset ='1') then
+             fsm_state_current <= sta_wait_l;
+       else
+       if rising_edge(i_bclk) then
+             fsm_state_current <= fsm_state_next;
+       end if;
+       end if;
+    end process;
+    
+    transion_state: process(i_lrc , fsm_state_current, i_cpt_bits)
+    begin
+        case fsm_state_current is 
+            when sta_wait_l =>
+                if(i_lrc = '1') then
+                    fsm_state_next <= sta_wait_l; -- keep waiting
+                else
+                    fsm_state_next <= sta_load_l; -- change state
+                end if;
+            
+            when sta_load_l =>
+                if(i_cpt_bits /= "0011000") then -- counter hasnt reached value of [24]
+                    fsm_state_next <= sta_load_l; -- keep waiting
+                else
+                    fsm_state_next <= sta_pulse_l; -- change state
+                end if;
+            
+            when sta_pulse_l =>
+                fsm_state_next <= sta_wait_l; -- change state
+                
+            when sta_wait_r =>
+                if(i_lrc = '0') then
+                    fsm_state_next <= sta_wait_r; -- keep waiting
+                else
+                    fsm_state_next <= sta_load_r; -- change state
+                end if;
+            
+            when sta_load_r =>
+                if(i_cpt_bits /= "0011000") then -- counter hasnt reached value of [24]
+                    fsm_state_next <= sta_load_r; -- keep waiting
+                else
+                    fsm_state_next <= sta_pulse_r; -- change state
+                end if;
+                
+            when sta_pulse_r =>
+                fsm_state_next <= sta_wait_l; -- change state
+            
+            when others =>
+                fsm_state_next <= sta_wait_l;
+        end case;
+    end process;
+    
+    apply_state: process(fsm_state_current, i_lrc)
+    begin
+        case fsm_state_current is 
+            when sta_wait_l =>
+                o_cpt_bit_reset <= '1';
+                o_bit_enable    <= '0';
+                o_load_left     <= '0';
+                o_load_right    <= '0';
+                o_str_dat       <= '0';
+            
+            when sta_load_l =>
+                o_cpt_bit_reset <= '0';
+                o_bit_enable    <= '1';
+                o_load_left     <= '1';
+                o_load_right    <= '0';
+                o_str_dat       <= '0';
+                
+            when sta_pulse_l =>
+                o_cpt_bit_reset <= '0';
+                o_bit_enable    <= '0';
+                o_load_left     <= '0';
+                o_load_right    <= '0';
+                o_str_dat       <= '1';
+                
+            when sta_wait_r =>
+                o_cpt_bit_reset <= '1';
+                o_bit_enable    <= '0';
+                o_load_left     <= '0';
+                o_load_right    <= '0';
+                o_str_dat       <= '0';
+                
+            when sta_load_r =>
+                o_cpt_bit_reset <= '0';
+                o_bit_enable    <= '1';
+                o_load_left     <= '0';
+                o_load_right    <= '1';
+                o_str_dat       <= '0';
+                
+            when sta_pulse_r =>
+                o_cpt_bit_reset <= '0';
+                o_bit_enable    <= '0';
+                o_load_left     <= '0';
+                o_load_right    <= '0';
+                o_str_dat       <= '1';
+            
+            when others =>
+                o_cpt_bit_reset <= '1';
+                o_bit_enable    <= '0';
+                o_load_left     <= '0';
+                o_load_right    <= '0';
+                o_str_dat       <= '0';
+        end case;
+    end process;
+    ------------------ OLD CODE: ----------------------------
 
    -- pour detecter transitions d_ac_reclrc
    reglrc_I2S: process ( i_bclk)
