@@ -56,9 +56,11 @@ architecture Behavioral of mef_decod_i2s_v1b is
     type fsm_decode_state is (
         sta_wait_l,
         sta_load_l,
+        sta_copy_l,
         sta_pulse_l,
         sta_wait_r,
         sta_load_r,
+        sta_copy_r,
         sta_pulse_r
     );
     
@@ -87,11 +89,14 @@ begin
                 end if;
             
             when sta_load_l =>
-                if(i_cpt_bits /= "0011000") then -- counter hasnt reached value of [24]
+                if(i_cpt_bits /= "0010111") then -- counter hasnt reached value of [24]
                     fsm_state_next <= sta_load_l; -- keep waiting
                 else
-                    fsm_state_next <= sta_pulse_l; -- change state
+                    fsm_state_next <= sta_copy_l; -- change state
                 end if;
+                
+            when sta_copy_l =>
+                fsm_state_next <= sta_pulse_l; -- change state
             
             when sta_pulse_l =>
                 fsm_state_next <= sta_wait_r; -- change state
@@ -104,11 +109,14 @@ begin
                 end if;
             
             when sta_load_r =>
-                if(i_cpt_bits /= "0011000") then -- counter hasnt reached value of [24]
+                if(i_cpt_bits /= "0010111") then -- counter hasnt reached value of [24]
                     fsm_state_next <= sta_load_r; -- keep waiting
                 else
-                    fsm_state_next <= sta_pulse_r; -- change state
+                    fsm_state_next <= sta_copy_r; -- change state
                 end if;
+                
+            when sta_copy_r =>
+                fsm_state_next <= sta_pulse_r; -- change state
                 
             when sta_pulse_r =>
                 fsm_state_next <= sta_wait_l; -- change state
@@ -131,6 +139,13 @@ begin
             when sta_load_l =>
                 o_cpt_bit_reset <= '0';
                 o_bit_enable    <= '1';
+                o_load_left     <= '0';
+                o_load_right    <= '0';
+                o_str_dat       <= '0';
+                
+            when sta_copy_l =>
+                o_cpt_bit_reset <= '0';
+                o_bit_enable    <= '0';
                 o_load_left     <= '1';
                 o_load_right    <= '0';
                 o_str_dat       <= '0';
@@ -140,7 +155,7 @@ begin
                 o_bit_enable    <= '0';
                 o_load_left     <= '0';
                 o_load_right    <= '0';
-                o_str_dat       <= '1';
+                o_str_dat       <= '0';
                 
             when sta_wait_r =>
                 o_cpt_bit_reset <= '1';
@@ -152,6 +167,13 @@ begin
             when sta_load_r =>
                 o_cpt_bit_reset <= '0';
                 o_bit_enable    <= '1';
+                o_load_left     <= '0';
+                o_load_right    <= '0';
+                o_str_dat       <= '0';
+                
+            when sta_copy_r =>
+                o_cpt_bit_reset <= '0';
+                o_bit_enable    <= '0';
                 o_load_left     <= '0';
                 o_load_right    <= '1';
                 o_str_dat       <= '0';

@@ -2,11 +2,11 @@
    "ActiveEmotionalView":"Default View",
    "Default View_Layers":"/clk_1:true|/i_reset_1:true|/M1_decodeur_i2s/mef_decod_i2s_v1b_0_o_cpt_bit_reset:true|/M9_codeur_i2s/mef_cod_i2s_vsb_0_o_cpt_bit_reset:true|",
    "Default View_ScaleFactor":"0.801158",
-   "Default View_TopLeft":"2077,-44",
+   "Default View_TopLeft":"-241,117",
    "Display-PortTypeClock":"true",
    "Display-PortTypeOthers":"true",
    "Display-PortTypeReset":"true",
-   "ExpandedHierarchyInLayout":"",
+   "ExpandedHierarchyInLayout":"/M1_decodeur_i2s|/M9_codeur_i2s",
    "comment_1":"Modules à modifier:
 MEF_decodeur_i2s (dans M1_decodeur_i2s)
 M5_parametre_1
