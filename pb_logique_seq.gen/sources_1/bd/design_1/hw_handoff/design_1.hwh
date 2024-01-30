@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jan 29 17:25:18 2024" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jan 29 21:24:18 2024" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo-z7-10:part0:1.0" DEVICE="7z010" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -442,16 +442,6 @@
             <CONNECTION INSTANCE="Multiplexeur_choix_fonction" PORT="output0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="o_param" RIGHT="0" SIGIS="undef" SIGNAME="M5_param_1_calcul_param_1_0_o_param">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="M5_param_1_reg_8b_0" PORT="i_dat"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="6" NAME="i_cpt_bits" RIGHT="0" SIGIS="undef" SIGNAME="M5_param_1_compteur_nbits_0_o_val_cpt">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="M5_param_1_compteur_nbits_0" PORT="o_val_cpt"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="o_cpt_bit_reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="M5_param_1_calcul_param_1_0_o_cpt_bit_reset">
           <CONNECTIONS>
             <CONNECTION INSTANCE="M5_param_1_compteur_nbits_0" PORT="reset"/>
@@ -490,7 +480,7 @@
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="o_val_cpt" RIGHT="0" SIGIS="undef" SIGNAME="M5_param_1_compteur_nbits_0_o_val_cpt">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="M5_param_1_calcul_param_1_0" PORT="i_cpt_bits"/>
+            <CONNECTION INSTANCE="M5_param_1_reg_8b_0" PORT="i_dat"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -518,9 +508,9 @@
             <CONNECTION INSTANCE="M5_param_1_calcul_param_1_0" PORT="o_reg_en"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="i_dat" RIGHT="0" SIGIS="undef" SIGNAME="M5_param_1_calcul_param_1_0_o_param">
+        <PORT DIR="I" LEFT="7" NAME="i_dat" RIGHT="0" SIGIS="undef" SIGNAME="M5_param_1_compteur_nbits_0_o_val_cpt">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="M5_param_1_calcul_param_1_0" PORT="o_param"/>
+            <CONNECTION INSTANCE="M5_param_1_compteur_nbits_0" PORT="o_val_cpt"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="o_dat" RIGHT="0" SIGIS="undef" SIGNAME="M5_param_1_reg_8b_0_o_dat">

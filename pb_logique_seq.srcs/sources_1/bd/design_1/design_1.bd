@@ -1419,16 +1419,6 @@
                 "left": "23",
                 "right": "0"
               },
-              "o_param": {
-                "direction": "O",
-                "left": "7",
-                "right": "0"
-              },
-              "i_cpt_bits": {
-                "direction": "I",
-                "left": "6",
-                "right": "0"
-              },
               "o_cpt_bit_reset": {
                 "type": "rst",
                 "direction": "O"
@@ -1480,22 +1470,16 @@
               "compteur_nbits_0/reset"
             ]
           },
-          "compteur_nbits_0_o_val_cpt": {
-            "ports": [
-              "compteur_nbits_0/o_val_cpt",
-              "calcul_param_1_0/i_cpt_bits"
-            ]
-          },
-          "calcul_param_1_0_o_param": {
-            "ports": [
-              "calcul_param_1_0/o_param",
-              "reg_8b_0/i_dat"
-            ]
-          },
           "i_ech_1": {
             "ports": [
               "i_ech",
               "calcul_param_1_0/i_ech"
+            ]
+          },
+          "compteur_nbits_0_o_val_cpt": {
+            "ports": [
+              "compteur_nbits_0/o_val_cpt",
+              "reg_8b_0/i_dat"
             ]
           }
         }

@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
---Date        : Mon Jan 29 17:25:18 2024
+--Date        : Mon Jan 29 21:24:18 2024
 --Host        : DESKTOP-8BOTKE1 running 64-bit major release  (build 9200)
 --Command     : generate_target design_1.bd
 --Design      : design_1
@@ -199,14 +199,11 @@ architecture STRUCTURE of M5_param_1_imp_1W7ZI9M is
     i_reset : in STD_LOGIC;
     i_en : in STD_LOGIC;
     i_ech : in STD_LOGIC_VECTOR ( 23 downto 0 );
-    o_param : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    i_cpt_bits : in STD_LOGIC_VECTOR ( 6 downto 0 );
     o_cpt_bit_reset : out STD_LOGIC;
     o_reg_en : out STD_LOGIC
   );
   end component design_1_calcul_param_1_0_1;
   signal calcul_param_1_0_o_cpt_bit_reset : STD_LOGIC;
-  signal calcul_param_1_0_o_param : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal calcul_param_1_0_o_reg_en : STD_LOGIC;
   signal clk_100MHz_1 : STD_LOGIC;
   signal compteur_nbits_0_o_val_cpt : STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -223,12 +220,10 @@ begin
 calcul_param_1_0: component design_1_calcul_param_1_0_1
      port map (
       i_bclk => clk_100MHz_1,
-      i_cpt_bits(6 downto 0) => compteur_nbits_0_o_val_cpt(6 downto 0),
       i_ech(23 downto 0) => i_ech_1(23 downto 0),
       i_en => i_en_1,
       i_reset => reset_1,
       o_cpt_bit_reset => calcul_param_1_0_o_cpt_bit_reset,
-      o_param(7 downto 0) => calcul_param_1_0_o_param(7 downto 0),
       o_reg_en => calcul_param_1_0_o_reg_en
     );
 compteur_nbits_0: component design_1_compteur_nbits_0_2
@@ -241,7 +236,7 @@ compteur_nbits_0: component design_1_compteur_nbits_0_2
 reg_8b_0: component design_1_reg_8b_0_0
      port map (
       i_clk => clk_100MHz_1,
-      i_dat(7 downto 0) => calcul_param_1_0_o_param(7 downto 0),
+      i_dat(7 downto 0) => compteur_nbits_0_o_val_cpt(7 downto 0),
       i_en => calcul_param_1_0_o_reg_en,
       i_reset => reset_1,
       o_dat(7 downto 0) => reg_8b_0_o_dat(7 downto 0)
@@ -432,7 +427,7 @@ use UNISIM.VCOMPONENTS.ALL;
     o_sel_par : out STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of design_1 : entity is "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=31,numReposBlks=28,numNonXlnxBlks=0,numHierBlks=3,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=21,numPkgbdBlks=0,bdsource=USER,""""""""""""""""""""""""""""""""""""""""""""""""""""""""da_clkrst_cnt""""""""""""""""""""""""""""""""""""""""""""""""""""""""=1,synth_mode=OOC_per_IP}";
+  attribute CORE_GENERATION_INFO of design_1 : entity is "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=31,numReposBlks=28,numNonXlnxBlks=0,numHierBlks=3,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=21,numPkgbdBlks=0,bdsource=USER,""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""da_clkrst_cnt""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""=1,synth_mode=OOC_per_IP}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1 : entity is "design_1.hwdef";
 end design_1;

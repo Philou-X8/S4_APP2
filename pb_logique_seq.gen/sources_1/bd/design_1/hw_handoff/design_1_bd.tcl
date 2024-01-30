@@ -353,10 +353,9 @@ proc create_hier_cell_M5_param_1 { parentCell nameHier } {
   
   # Create port connections
   connect_bd_net -net calcul_param_1_0_o_cpt_bit_reset [get_bd_pins calcul_param_1_0/o_cpt_bit_reset] [get_bd_pins compteur_nbits_0/reset]
-  connect_bd_net -net calcul_param_1_0_o_param [get_bd_pins calcul_param_1_0/o_param] [get_bd_pins reg_8b_0/i_dat]
   connect_bd_net -net calcul_param_1_0_o_reg_en [get_bd_pins calcul_param_1_0/o_reg_en] [get_bd_pins reg_8b_0/i_en]
   connect_bd_net -net clk_100MHz_1 [get_bd_pins clk] [get_bd_pins calcul_param_1_0/i_bclk] [get_bd_pins compteur_nbits_0/clk] [get_bd_pins reg_8b_0/i_clk]
-  connect_bd_net -net compteur_nbits_0_o_val_cpt [get_bd_pins calcul_param_1_0/i_cpt_bits] [get_bd_pins compteur_nbits_0/o_val_cpt]
+  connect_bd_net -net compteur_nbits_0_o_val_cpt [get_bd_pins compteur_nbits_0/o_val_cpt] [get_bd_pins reg_8b_0/i_dat]
   connect_bd_net -net i_ech_1 [get_bd_pins i_ech] [get_bd_pins calcul_param_1_0/i_ech]
   connect_bd_net -net i_en_1 [get_bd_pins i_en] [get_bd_pins calcul_param_1_0/i_en] [get_bd_pins compteur_nbits_0/i_en]
   connect_bd_net -net reg_8b_0_o_dat [get_bd_pins o_param] [get_bd_pins reg_8b_0/o_dat]

@@ -59,8 +59,6 @@ ENTITY design_1_calcul_param_1_0_1 IS
     i_reset : IN STD_LOGIC;
     i_en : IN STD_LOGIC;
     i_ech : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
-    o_param : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-    i_cpt_bits : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
     o_cpt_bit_reset : OUT STD_LOGIC;
     o_reg_en : OUT STD_LOGIC
   );
@@ -75,8 +73,6 @@ ARCHITECTURE design_1_calcul_param_1_0_1_arch OF design_1_calcul_param_1_0_1 IS
       i_reset : IN STD_LOGIC;
       i_en : IN STD_LOGIC;
       i_ech : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
-      o_param : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-      i_cpt_bits : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
       o_cpt_bit_reset : OUT STD_LOGIC;
       o_reg_en : OUT STD_LOGIC
     );
@@ -96,8 +92,6 @@ BEGIN
       i_reset => i_reset,
       i_en => i_en,
       i_ech => i_ech,
-      o_param => o_param,
-      i_cpt_bits => i_cpt_bits,
       o_cpt_bit_reset => o_cpt_bit_reset,
       o_reg_en => o_reg_en
     );
