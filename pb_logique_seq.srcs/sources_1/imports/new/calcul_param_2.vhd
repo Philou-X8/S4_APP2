@@ -72,7 +72,7 @@ begin
                 d_ech_last <= 
                     shift_right( signed(i_ech)*signed(i_ech), 1 ) 
                     + shift_right( 
-                        shift_right( d_ech_last, 1) + shift_right( d_ech_last, 2) + shift_right( d_ech_last, 3) + shift_right( d_ech_last, 4), 1 
+                        shift_right( d_ech_last, 1) + shift_right( d_ech_last, 2) + shift_right( d_ech_last, 3) + shift_right( d_ech_last, 4) + shift_right( d_ech_last, 5), 1 
                         ); -- bit_shift;
                 -- d_ech_last * "01111";
                 -- d_ech_last <= signed(i_ech);

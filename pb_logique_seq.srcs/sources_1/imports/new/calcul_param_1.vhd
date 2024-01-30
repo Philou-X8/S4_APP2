@@ -89,9 +89,9 @@ begin
         case fsm_state_current is 
             when sta_wait_pos =>
                 if(i_ech(23) = '0') then 
-                    fsm_state_next <= sta_pos_1; -- change state
-                --else
-                --    fsm_state_next <= sta_wait_pos; -- keep waiting
+                    fsm_state_next <= sta_pos_3; -- change state
+                else
+                    fsm_state_next <= sta_wait_pos; -- keep waiting
                 end if;
                
             when sta_pos_1 =>
@@ -123,7 +123,7 @@ begin
                 if(i_ech(23) = '0') then 
                     fsm_state_next <= sta_wait_neg;  -- change state
                 else
-                    fsm_state_next <= sta_neg_1; -- keep waiting
+                    fsm_state_next <= sta_neg_3; -- keep waiting
                 end if;
                 
             when sta_neg_1 =>

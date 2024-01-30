@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="simul_module_sig_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="simul_module_sig_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="9760000001fs"></ZoomEndTime>
+      <Cursor1Time time="100000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="189"></NameColumnWidth>
+      <ValueColumnWidth column_width="92"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="39" />
+   <wvobject fp_name="/simul_module_sig_tb/d_ac_bclk" type="logic">
+      <obj_property name="ElementShortName">d_ac_bclk</obj_property>
+      <obj_property name="ObjectShortName">d_ac_bclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_ac_mclk" type="logic">
+      <obj_property name="ElementShortName">d_ac_mclk</obj_property>
+      <obj_property name="ObjectShortName">d_ac_mclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_cpt_mclk" type="array">
+      <obj_property name="ElementShortName">d_cpt_mclk[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_cpt_mclk[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_ac_pbdat" type="logic">
+      <obj_property name="ElementShortName">d_ac_pbdat</obj_property>
+      <obj_property name="ObjectShortName">d_ac_pbdat</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_sig_pbdat" type="logic">
+      <obj_property name="ElementShortName">d_sig_pbdat</obj_property>
+      <obj_property name="ObjectShortName">d_sig_pbdat</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_ac_pblrc" type="logic">
+      <obj_property name="ElementShortName">d_ac_pblrc</obj_property>
+      <obj_property name="ObjectShortName">d_ac_pblrc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_ac_recdat" type="logic">
+      <obj_property name="ElementShortName">d_ac_recdat</obj_property>
+      <obj_property name="ObjectShortName">d_ac_recdat</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_ac_reclrc" type="logic">
+      <obj_property name="ElementShortName">d_ac_reclrc</obj_property>
+      <obj_property name="ObjectShortName">d_ac_reclrc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_val_ech_L" type="array">
+      <obj_property name="ElementShortName">d_val_ech_L[23:0]</obj_property>
+      <obj_property name="ObjectShortName">d_val_ech_L[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_val_ech_R" type="array">
+      <obj_property name="ElementShortName">d_val_ech_R[23:0]</obj_property>
+      <obj_property name="ObjectShortName">d_val_ech_R[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_val_ech_R_u" type="array">
+      <obj_property name="ElementShortName">d_val_ech_R_u[23:0]</obj_property>
+      <obj_property name="ObjectShortName">d_val_ech_R_u[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_val_ech_L_u" type="array">
+      <obj_property name="ElementShortName">d_val_ech_L_u[23:0]</obj_property>
+      <obj_property name="ObjectShortName">d_val_ech_L_u[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_ech_reg_left" type="array">
+      <obj_property name="ElementShortName">d_ech_reg_left[23:0]</obj_property>
+      <obj_property name="ObjectShortName">d_ech_reg_left[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_ech_reg_right" type="array">
+      <obj_property name="ElementShortName">d_ech_reg_right[23:0]</obj_property>
+      <obj_property name="ObjectShortName">d_ech_reg_right[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/s_reset" type="logic">
+      <obj_property name="ElementShortName">s_reset</obj_property>
+      <obj_property name="ObjectShortName">s_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/compt_gen_R" type="array">
+      <obj_property name="ElementShortName">compt_gen_R[7:0]</obj_property>
+      <obj_property name="ObjectShortName">compt_gen_R[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/compt_gen_L" type="array">
+      <obj_property name="ElementShortName">compt_gen_L[7:0]</obj_property>
+      <obj_property name="ObjectShortName">compt_gen_L[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/s_btn" type="array">
+      <obj_property name="ElementShortName">s_btn[3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_btn[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/s_sw" type="array">
+      <obj_property name="ElementShortName">s_sw[3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_sw[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_param" type="array">
+      <obj_property name="ElementShortName">d_param[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_param[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/d_led" type="array">
+      <obj_property name="ElementShortName">d_led[3:0]</obj_property>
+      <obj_property name="ObjectShortName">d_led[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/leftInputFileName" type="array">
+      <obj_property name="ElementShortName">leftInputFileName[1:25]</obj_property>
+      <obj_property name="ObjectShortName">leftInputFileName[1:25]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/rightInputFileName" type="array">
+      <obj_property name="ElementShortName">rightInputFileName[1:26]</obj_property>
+      <obj_property name="ObjectShortName">rightInputFileName[1:26]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/c_mclk_Period" type="other">
+      <obj_property name="ElementShortName">c_mclk_Period</obj_property>
+      <obj_property name="ObjectShortName">c_mclk_Period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/c_clk_p_Period" type="other">
+      <obj_property name="ElementShortName">c_clk_p_Period</obj_property>
+      <obj_property name="ObjectShortName">c_clk_p_Period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/i_ech" type="array">
+      <obj_property name="ElementShortName">i_ech[23:0]</obj_property>
+      <obj_property name="ObjectShortName">i_ech[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/i_en" type="logic">
+      <obj_property name="ElementShortName">i_en</obj_property>
+      <obj_property name="ObjectShortName">i_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/o_param" type="array">
+      <obj_property name="ElementShortName">o_param[7:0]</obj_property>
+      <obj_property name="ObjectShortName">o_param[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/calcul_param_1_0_o_cpt_bit_reset" type="logic">
+      <obj_property name="ElementShortName">calcul_param_1_0_o_cpt_bit_reset</obj_property>
+      <obj_property name="ObjectShortName">calcul_param_1_0_o_cpt_bit_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/calcul_param_1_0_o_reg_en" type="logic">
+      <obj_property name="ElementShortName">calcul_param_1_0_o_reg_en</obj_property>
+      <obj_property name="ObjectShortName">calcul_param_1_0_o_reg_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/clk_100MHz_1" type="logic">
+      <obj_property name="ElementShortName">clk_100MHz_1</obj_property>
+      <obj_property name="ObjectShortName">clk_100MHz_1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/compteur_nbits_0_o_val_cpt" type="array">
+      <obj_property name="ElementShortName">compteur_nbits_0_o_val_cpt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">compteur_nbits_0_o_val_cpt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/i_ech_1" type="array">
+      <obj_property name="ElementShortName">i_ech_1[23:0]</obj_property>
+      <obj_property name="ObjectShortName">i_ech_1[23:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/i_en_1" type="logic">
+      <obj_property name="ElementShortName">i_en_1</obj_property>
+      <obj_property name="ObjectShortName">i_en_1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/reg_8b_0_o_dat" type="array">
+      <obj_property name="ElementShortName">reg_8b_0_o_dat[7:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_8b_0_o_dat[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/reset_1" type="logic">
+      <obj_property name="ElementShortName">reset_1</obj_property>
+      <obj_property name="ObjectShortName">reset_1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/simul_module_sig_tb/UUT_mod_sig/M5_param_1/calcul_param_1_0/U0/o_cpt_bit_reset" type="logic">
+      <obj_property name="ElementShortName">o_cpt_bit_reset</obj_property>
+      <obj_property name="ObjectShortName">o_cpt_bit_reset</obj_property>
+   </wvobject>
+</wave_config>
