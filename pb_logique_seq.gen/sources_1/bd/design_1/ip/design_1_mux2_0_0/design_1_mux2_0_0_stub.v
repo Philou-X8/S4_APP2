@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-// Date        : Tue Jan 16 12:01:55 2024
-// Host        : gegi-3014-bmwin running 64-bit major release  (build 9200)
+// Date        : Tue Jan 30 14:27:07 2024
+// Host        : DESKTOP-8BOTKE1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               c:/Users/rosj2103/Downloads/pb_logique_seq/pb_logique_seq.gen/sources_1/bd/design_1/ip/design_1_mux2_0_0/design_1_mux2_0_0_stub.v
+//               f:/Xilinx/Projects/S4_APP2/pb_logique_seq.gen/sources_1/bd/design_1/ip/design_1_mux2_0_0/design_1_mux2_0_0_stub.v
 // Design      : design_1_mux2_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z010clg400-1
